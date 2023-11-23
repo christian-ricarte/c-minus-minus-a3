@@ -2,11 +2,14 @@ grammar GramaticaCMenosMenos;
 
 raiz_programa: EOF | (declaracaoVariavel | declaracaoFunc PONTO_E_VIRGULA)*; 
 
-// Declarações  
+// Declarações de Expressões Matemáticas 
 operadoresMath: MAIS | MENOS | DIVISAO | MULT;
-operadoresLogicos: AND | OR | NOT;
 calcular: (NUM operadoresMath NUM PONTO_E_VIRGULA)* ;
 
+// Declarações de Expressões Lógicas
+operadoresLogicos: AND | OR | NOT;
+
+// Declaração de Estrutura Condicional
 condicional: IF PAR_E (LETRA operadoresLogicos LETRA)* PAR_D
 CHAVE_E
     declaracaoVariavel
@@ -14,10 +17,12 @@ CHAVE_E
 CHAVE_D
 ;
 
+// Declaração de Variáveis
 declaracaoVariavel: INT LETRA IGUAL NUM PONTO_E_VIRGULA 
 | STRING LETRA IGUAL LETRA PONTO_E_VIRGULA;
 
 
+// Declaração de Funções
 declaracaoFunc: FUNC LETRA PAR_E (LETRA VIRGULA LETRA)* PAR_D IGUAL
 CHAVE_E
     declaracaoVariavel
