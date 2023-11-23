@@ -1,28 +1,26 @@
 grammar GramaticaCMenosMenos;
 
-raiz_programa: EOF | (declaracaoVariavel | declaracaoFunc PONTO_E_VIRGULA)*; 
 
-// Declarações de Expressões Matemáticas 
+ raiz_programa: EOF | (declaracaoVariavel | declaracaoFunc  | calcular PONTO_E_VIRGULA)*; 
+
+// Declarações  
 operadoresMath: MAIS | MENOS | DIVISAO | MULT;
-calcular: (NUM operadoresMath NUM PONTO_E_VIRGULA)* ;
-
-// Declarações de Expressões Lógicas
 operadoresLogicos: AND | OR | NOT;
+operadoresRelacionais: MAIOR_QUE | MENOR_QUE | IGUAL;
+calcular: (LETRA IGUAL NUM operadoresMath NUM PONTO_E_VIRGULA)* ;
 
-// Declaração de Estrutura Condicional
-condicional: IF PAR_E (LETRA operadoresLogicos LETRA)* PAR_D
+condicional: IF PAR_E (LETRA operadoresRelacionais LETRA operadoresLogicos LETRA )*   PAR_D
 CHAVE_E
     declaracaoVariavel
     calcular
 CHAVE_D
 ;
 
-// Declaração de Variáveis
+
 declaracaoVariavel: INT LETRA IGUAL NUM PONTO_E_VIRGULA 
 | STRING LETRA IGUAL LETRA PONTO_E_VIRGULA;
 
 
-// Declaração de Funções
 declaracaoFunc: FUNC LETRA PAR_E (LETRA VIRGULA LETRA)* PAR_D IGUAL
 CHAVE_E
     declaracaoVariavel
@@ -53,9 +51,12 @@ IF: 'if' ESPACO ;
 AND: '&& | and' ;
 OR: '|| | or' ;
 NOT: '! | NOT' ;
+//Operadores Relacionais
+MAIOR_QUE: ESPACO '>' ESPACO ;
+MENOR_QUE: ESPACO '<' ESPACO ;
 // Tipos primitivos
 LETRA: [A-Z][a-z]* ;
-NUM: [1-9][0-9]* ;
+NUM: [0-9][0-9]* ;
 ESPACO: [ \t\r\n]+ -> skip ;
 
 
