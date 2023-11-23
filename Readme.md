@@ -4,6 +4,7 @@
 * Abdallah Yaziji — RA 125111344827
 * Alex Costa de Moura — RA 125111355243
 * Christian Ricarte Rodrigues — RA 125111363064
+* Gabriel José de Castro Torres — RA 125111373414
 * Guilherme Parra de Oliveira — RA 125111352877
 * Pedro Henrique Molonhoni Nogueira — RA 125111376138
 
