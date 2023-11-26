@@ -14,7 +14,7 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
     
     public Listener() {
         try {
-            linguagemFinal = new FileWriter (new File("LinguagemProc.txt"));
+            linguagemFinal = new FileWriter (new File("Result.txt"));
         } catch (IOException e) {
             System.out.println("Erro de criação ao arquivo");
             e.printStackTrace();
@@ -34,9 +34,10 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {
         try {
-            org.antlr.v4.runtime.tree.ParseTree no0 = ctx.getChild(0);             
+            org.antlr.v4.runtime.tree.ParseTree no0 = ctx.getChild(0);
+
             if(isNotNull(no0)){
-                if(isEquals(no0, "Era uma vez")){
+                if(isEquals(no0, "int")){
                     if(isNotNull(ctx.getChild(0)) && isNotNull(ctx.getChild(2)) && isNotNull(ctx.getChild(3))){
                         linguagemFinal.write("Era uma vez... " + ctx.getChild(1).getText() + " e " + ctx.getChild(3).getText() + "\n");
                         linguagemFinal.flush();
@@ -60,8 +61,6 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
                         linguagemFinal.write(ctx.getChild(0).getText() + " andou a " + (i+1)+ "a vez\n");
                     }
                 }
-            }
-            if(isNotNull(no)){            
                 if(isEquals(no, "pesa")){
                     minhasVariaveis.put(ctx.getChild(0).getText(), ctx.getChild(2).getText());
                 }
@@ -81,14 +80,13 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
 
     @Override
     public void visitTerminal(TerminalNode node) {       
-        /* 
         try {
-            //linguagemFinal.write("Entrando Terminal " + node.getText() + "\n");
-            //linguagemFinal.flush();
+            linguagemFinal.write("Entrando Terminal " + node.getText() + "\n");
+            linguagemFinal.flush();
         } catch (IOException e) {
             System.out.println("Erro de escrita ao arquivo");
             e.printStackTrace();
-        }*/
+        }
     }
 
 

@@ -7,34 +7,31 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class Compiler {
-    public static void main(String[] args) {
-        
-        System.out.println("hello");
-        // Ler o texto a ser convertido transformando em Stream de "char"
-        //CharStream entrada = CharStreams.fromString("Era uma vez Joao e Maria");
-        String filePath = "arquivo.txt";  
-        CharStream entrada = null;
+    public void compile(String filePath) {
+        CharStream input = null;
         try {
-            entrada = CharStreams.fromPath(Path.of(filePath), StandardCharsets.UTF_8);
+            // Ler o texto a ser convertido transformando em Stream de "char"
+            input = CharStreams.fromPath(Path.of(filePath), StandardCharsets.UTF_8);
         } catch (IOException e) {
             System.out.println("Erro de acesso ao arquivo");
             e.printStackTrace();
         }
-        // Passar a Strem lida para o Lexer
-        GramaticaCMenosMenosLexer lexer = new GramaticaCMenosMenosLexer(entrada);
+        
+        GramaticaCMenosMenosParser parser = new GramaticaCMenosMenosParser(
+            new CommonTokenStream( 
+                new GramaticaCMenosMenosLexer(input) // Passar as entradas lidas para o Lexer */
+                ) // Passando o resultado da analise Lexica para o processador de Tokens
+                ); // Passando os tokens para o parser 
 
-        // Passando o resultado da analise Lexica para o processador de Tokens
-        CommonTokenStream  tokens = new CommonTokenStream(lexer);
-        // Passando os tokens para o parser 
-        GramaticaCMenosMenosParser parser = new GramaticaCMenosMenosParser(tokens);
         // Pegar o ponto raiz da gramatica
-        GramaticaCMenosMenosParser.Raiz_programaContext arvore = parser.raiz_programa();
+        GramaticaCMenosMenosParser.Raiz_programaContext tree = parser.raiz_programa();
         // Imprimir a arvore geradora do texto sendo analisado
-        System.out.println(arvore.toStringTree(parser));
+        System.out.println(tree.toStringTree(parser));
 
-        // "Caminha" pela arvore disparando os metodos do Listener
-        Listener meuListener = new Listener();
         ParseTreeWalker parseTreeWalker = new ParseTreeWalker();
-        parseTreeWalker.walk(meuListener, arvore);        
+        parseTreeWalker.walk(
+            new Listener(), // "Caminha" pela arvore disparando os metodos do Listener
+            tree
+         );        
     }
 }
