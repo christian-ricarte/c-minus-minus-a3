@@ -7,12 +7,19 @@ grammar GramaticaCMenosMenos;
 operadoresMath: MAIS | MENOS | DIVISAO | MULT;
 operadoresLogicos: AND | OR | NOT;
 operadoresRelacionais: MAIOR_QUE | MENOR_QUE | IGUAL;
-calcular: (LETRA IGUAL NUM operadoresMath NUM PONTO_E_VIRGULA)* ;
+relacional: LETRA operadoresRelacionais LETRA |
+            relacional operadoresLogicos LETRA;
+blocoComando: (declaracaoVariavel)* | (calcular)* (declaracaoFunc)* (condicional)*;
 
-condicional: IF PAR_E (LETRA operadoresRelacionais LETRA operadoresLogicos LETRA )*   PAR_D
+calcular: LETRA IGUAL NUM operadoresMath NUM PONTO_E_VIRGULA |
+          LETRA IGUAL LETRA operadoresMath LETRA PONTO_E_VIRGULA |
+          calculo;
+calculo: PAR_E calcular PAR_D |
+         calculo operadoresMath calcular;
+
+condicional: IF PAR_E relacional PAR_D
 CHAVE_E
-    declaracaoVariavel
-    calcular
+    blocoComando
 CHAVE_D
 ;
 
@@ -23,13 +30,12 @@ declaracaoVariavel: INT LETRA IGUAL NUM PONTO_E_VIRGULA
 
 declaracaoFunc: FUNC LETRA PAR_E (LETRA VIRGULA LETRA)* PAR_D IGUAL
 CHAVE_E
-    declaracaoVariavel
-    calcular
+    blocoComando
 CHAVE_D
 ; 
 
 // Tipos
-INT:'INT | int' ESPACO ;
+INT:'INT' | 'int' ESPACO ;
 STRING: 'String' ESPACO ;
 FUNC: ESPACO 'FUNC' ESPACO ;
 // Caracteres especiais
@@ -48,9 +54,9 @@ DIVISAO: ESPACO '/' ESPACO ;
 MULT: ESPACO '*' ESPACO ; 
 // Operadores lógicos
 IF: 'if' ESPACO ;
-AND: '&& | and' ;
-OR: '|| | or' ;
-NOT: '! | NOT' ;
+AND: '&&' | 'and' ;
+OR: '||' | 'or' ;
+NOT: '!' | 'NOT' ;
 //Operadores Relacionais
 MAIOR_QUE: ESPACO '>' ESPACO ;
 MENOR_QUE: ESPACO '<' ESPACO ;
