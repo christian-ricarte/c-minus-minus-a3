@@ -33,8 +33,7 @@ public class GramaticaCMenosMenosParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, "'('", "')'", "'{'", "'}'", "';'", "','", null, 
-			null, null, null, null, null, "'&& | and'", "'|| | or'", "'! | NOT'"
+			null, null, null, null, "'('", "')'", "'{'", "'}'", "';'", "','"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
