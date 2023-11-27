@@ -7,14 +7,14 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class Listener extends GramaticaCMenosMenosBaseListener{
+public class Listener extends GramaticaCMenosMenosBaseListener {
     FileWriter linguagemFinal = null;
     String ultimoNome = null;
     Map<String, String> minhasVariaveis = new HashMap<String, String>();
-    
+
     public Listener() {
         try {
-            linguagemFinal = new FileWriter (new File("Result.txt"));
+            linguagemFinal = new FileWriter(new File("Result.txt"));
         } catch (IOException e) {
             System.out.println("Erro de criação ao arquivo");
             e.printStackTrace();
@@ -26,7 +26,8 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
         return child != null;
     }
 
-    // Método para validar se o conteúdo de um child é igual ao valor do parâmetro especificado
+    // Método para validar se o conteúdo de um child é igual ao valor do parâmetro
+    // especificado
     public boolean isEquals(org.antlr.v4.runtime.tree.ParseTree child, String key) {
         return (child).getText().trim().equalsIgnoreCase(key);
     }
@@ -34,35 +35,21 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {
         try {
-            org.antlr.v4.runtime.tree.ParseTree no0 = ctx.getChild(0);
+            if (ctx.getChildCount() > 0) {
+                if (isEquals(ctx.getChild(0), "IF")) {
+                    String var = ctx.getChild(1).getText();
+                    String valor = ctx.getChild(3).getText();
+                    String valorArmazenado = minhasVariaveis.get(var);
+                    if (valor.trim().equalsIgnoreCase(valorArmazenado)) {
+                        linguagemFinal.write(var + " " + ctx.getChild(3).getText() + "\n");
+                    }
 
-            if(isNotNull(no0)){
-                if(isEquals(no0, "int")){
-                    if(isNotNull(ctx.getChild(0)) && isNotNull(ctx.getChild(2)) && isNotNull(ctx.getChild(3))){
-                        linguagemFinal.write("Era uma vez... " + ctx.getChild(1).getText() + " e " + ctx.getChild(3).getText() + "\n");
-                        linguagemFinal.flush();
-                    }
                 }
-                if(isEquals(no0, "se")){
-                    String personagem = ctx.getChild(1).getChild(0).getText();
-                    String valor      = ctx.getChild(1).getChild(2).getText();
-                    String valorArmazenado = minhasVariaveis.get(personagem);
-                    if(valor.trim().equalsIgnoreCase(valorArmazenado)){
-                        linguagemFinal.write(personagem + " " + ctx.getChild(3).getText() + "\n");  
-                    }
-                    
-                }
-            }
-            org.antlr.v4.runtime.tree.ParseTree no = ctx.getChild(1);
-            if(isNotNull(no)){            
-                if(isEquals(no, "andou")){
-                    int vezes = Integer.parseInt(ctx.getChild(2).getText());                
-                    for(int i=0; i < vezes; i++){
-                        linguagemFinal.write(ctx.getChild(0).getText() + " andou a " + (i+1)+ "a vez\n");
-                    }
-                }
-                if(isEquals(no, "pesa")){
-                    minhasVariaveis.put(ctx.getChild(0).getText(), ctx.getChild(2).getText());
+                // Armazenar valor da variável
+                if (isNotNull(ctx.getChild(2)) && isEquals(ctx.getChild(2), "=")) {
+                    minhasVariaveis.put(ctx.getChild(1).getText(), ctx.getChild(3).getText());
+                    linguagemFinal.write("VARIAVEL " + ctx.getChild(1).getText().toLowerCase() + " IGUAL "
+                            + ctx.getChild(3).getText() + " PONTO E VIRGULA");
                 }
             }
             linguagemFinal.flush();
@@ -78,18 +65,17 @@ public class Listener extends GramaticaCMenosMenosBaseListener{
         super.exitEveryRule(ctx);
     }
 
-    @Override
-    public void visitTerminal(TerminalNode node) {       
-        try {
-            linguagemFinal.write("Entrando Terminal " + node.getText() + "\n");
-            linguagemFinal.flush();
-        } catch (IOException e) {
-            System.out.println("Erro de escrita ao arquivo");
-            e.printStackTrace();
-        }
-    }
+    /*
+     * @Override
+     * public void visitTerminal(TerminalNode node) {
+     * try {
+     * linguagemFinal.write("Entrando Terminal " + node.getText() + "\n");
+     * linguagemFinal.flush();
+     * } catch (IOException e) {
+     * System.out.println("Erro de escrita ao arquivo");
+     * e.printStackTrace();
+     * }
+     * }
+     */
 
-
-    
-    
 }
