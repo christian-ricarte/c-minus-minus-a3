@@ -1,14 +1,16 @@
 grammar GramaticaCMenosMenos;
 
 
- raiz_programa: EOF | (declaracaoVariavel | declaracaoFunc  | calcular PONTO_E_VIRGULA)*; 
+ raiz_programa: EOF | (declaracaoVariavel | declaracaoFunc  | calcular | blocoComando PONTO_E_VIRGULA)*; 
 
 // Declarações  
 operadoresMath: MAIS | MENOS | DIVISAO | MULT;
 operadoresLogicos: AND | OR | NOT;
 operadoresRelacionais: MAIOR_QUE | MENOR_QUE | IGUAL;
 relacional: LETRA operadoresRelacionais LETRA |
-            relacional operadoresLogicos LETRA;
+            relacional operadoresLogicos LETRA |
+            LETRA operadoresRelacionais NUM |
+            NUM operadoresRelacionais LETRA ;
 blocoComando: (declaracaoVariavel)* | (calcular)* (declaracaoFunc)* (condicional)*;
 
 calcular: LETRA IGUAL NUM operadoresMath NUM PONTO_E_VIRGULA |

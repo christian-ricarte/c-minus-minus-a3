@@ -64,6 +64,30 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRelacional(GramaticaCMenosMenosParser.RelacionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRelacional(GramaticaCMenosMenosParser.RelacionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBlocoComando(GramaticaCMenosMenosParser.BlocoComandoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlocoComando(GramaticaCMenosMenosParser.BlocoComandoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCalcular(GramaticaCMenosMenosParser.CalcularContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -71,6 +95,18 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCalcular(GramaticaCMenosMenosParser.CalcularContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCalculo(GramaticaCMenosMenosParser.CalculoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCalculo(GramaticaCMenosMenosParser.CalculoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

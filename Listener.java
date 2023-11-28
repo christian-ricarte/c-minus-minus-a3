@@ -8,13 +8,13 @@ import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class Listener extends GramaticaCMenosMenosBaseListener {
-    FileWriter linguagemFinal = null;
+    FileWriter compiledResult = null;
     String ultimoNome = null;
-    Map<String, String> minhasVariaveis = new HashMap<String, String>();
+    Map<String, String> variableBuffer = new HashMap<String, String>();
 
     public Listener() {
         try {
-            linguagemFinal = new FileWriter(new File("Result.txt"));
+            compiledResult = new FileWriter(new File("Result.txt"));
         } catch (IOException e) {
             System.out.println("Erro de criação ao arquivo");
             e.printStackTrace();
@@ -35,24 +35,25 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {
         try {
+            // Validar a quantidade de childs
             if (ctx.getChildCount() > 0) {
-                if (isEquals(ctx.getChild(0), "IF")) {
-                    String var = ctx.getChild(1).getText();
-                    String valor = ctx.getChild(3).getText();
-                    String valorArmazenado = minhasVariaveis.get(var);
+                // Estrutura condicional (Não finalizada ainda)
+                if (isEquals(ctx.getChild(0), "if")) {
+                    String variavel = ctx.getChild(2).getChild(0).getText();
+                    String valor = ctx.getChild(2).getChild(2).getText();
+                    String valorArmazenado = variableBuffer.get(variavel);
                     if (valor.trim().equalsIgnoreCase(valorArmazenado)) {
-                        linguagemFinal.write(var + " " + ctx.getChild(3).getText() + "\n");
+                        compiledResult.write("SE " + variavel + " " + ctx.getChild(4).getText() + "\n");
                     }
-
                 }
                 // Armazenar valor da variável
                 if (isNotNull(ctx.getChild(2)) && isEquals(ctx.getChild(2), "=")) {
-                    minhasVariaveis.put(ctx.getChild(1).getText(), ctx.getChild(3).getText());
-                    linguagemFinal.write("VARIAVEL " + ctx.getChild(1).getText().toLowerCase() + " IGUAL "
+                    variableBuffer.put(ctx.getChild(1).getText(), ctx.getChild(3).getText());
+                    compiledResult.write("VARIAVEL " + ctx.getChild(1).getText().toLowerCase() + " IGUAL "
                             + ctx.getChild(3).getText() + " PONTO E VIRGULA");
                 }
             }
-            linguagemFinal.flush();
+            compiledResult.flush();
         } catch (IOException e) {
             System.out.println("Erro de escrita ao arquivo");
             e.printStackTrace();

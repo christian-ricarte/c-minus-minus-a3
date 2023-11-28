@@ -47,6 +47,26 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 */
 	void exitOperadoresRelacionais(GramaticaCMenosMenosParser.OperadoresRelacionaisContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#relacional}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelacional(GramaticaCMenosMenosParser.RelacionalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#relacional}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelacional(GramaticaCMenosMenosParser.RelacionalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#blocoComando}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlocoComando(GramaticaCMenosMenosParser.BlocoComandoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#blocoComando}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlocoComando(GramaticaCMenosMenosParser.BlocoComandoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#calcular}.
 	 * @param ctx the parse tree
 	 */
@@ -56,6 +76,16 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCalcular(GramaticaCMenosMenosParser.CalcularContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#calculo}.
+	 * @param ctx the parse tree
+	 */
+	void enterCalculo(GramaticaCMenosMenosParser.CalculoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#calculo}.
+	 * @param ctx the parse tree
+	 */
+	void exitCalculo(GramaticaCMenosMenosParser.CalculoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#condicional}.
 	 * @param ctx the parse tree
