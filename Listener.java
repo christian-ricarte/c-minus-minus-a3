@@ -9,7 +9,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class Listener extends GramaticaCMenosMenosBaseListener {
     FileWriter compiledResult = null;
-    String ultimoNome = null;
     Map<String, String> variableBuffer = new HashMap<String, String>();
 
     public Listener() {
@@ -32,25 +31,72 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
         return (child).getText().trim().equalsIgnoreCase(key);
     }
 
+    // Método para avaliar os critérios da expressão condicional e entregar o resultado dela 
+    public static Boolean conditionalExpressionEval(int operando1, int operando2, String operator) {
+        switch (operator) {
+            case ">":
+                return operando1 > operando2;
+            case "<":
+                return operando1 < operando2;
+            case "==":
+                return operando1 == operando2;
+            default:
+                return null;
+        }
+    };
+
+    // Método para formatar o operador de uma expressão condicional
+    public static String conditionalExpressionFormat(String operator) {
+        switch (operator) {
+            case ">":
+                return "MAIOR QUE";
+            case "<":
+                return "MENOR QUE";
+            case "==":
+                return "FOR IGUAL A";
+            default:
+                return "OPERADOR INVÁLIDO";
+        }
+    }
+
+    public static boolean isChar(String input) {
+        return input.matches("[a-zA-Z]+");
+    }
+
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {
         try {
             // Validar a quantidade de childs
             if (ctx.getChildCount() > 0) {
-                // Estrutura condicional (Não finalizada ainda)
+                // Estrutura condicional
                 if (isEquals(ctx.getChild(0), "if")) {
-                    String variavel = ctx.getChild(2).getChild(0).getText();
-                    String valor = ctx.getChild(2).getChild(2).getText();
-                    String valorArmazenado = variableBuffer.get(variavel);
-                    if (valor.trim().equalsIgnoreCase(valorArmazenado)) {
-                        compiledResult.write("SE " + variavel + " " + ctx.getChild(4).getText() + "\n");
+                    String firstVariable = ctx.getChild(2).getChild(0).getText();
+                    String secondVariable = ctx.getChild(2).getChild(2).getText();
+                    String logicalOperator = ctx.getChild(2).getChild(1).getText().trim();
+                    // Condição para avaliar a lógica da expressão condicional
+                    if (conditionalExpressionEval(
+                            // Se for um caracter, no caso, uma variável, o valor associada a ela será buscado no buffer, do contrário, caso seja um valor efetivamente, o expressão seguirá
+                            isChar(firstVariable) ? Integer.parseInt(variableBuffer.get(firstVariable))
+                                    : Integer.parseInt(firstVariable),
+                            isChar(secondVariable) ? Integer.parseInt(variableBuffer.get(secondVariable))
+                                    : Integer.parseInt(secondVariable),
+                            logicalOperator)) {
+                        // Cenário em que a condição seja verdadeira
+                        compiledResult.write("SE " + firstVariable + " " + conditionalExpressionFormat(logicalOperator)
+                                + " " + secondVariable
+                                + " ENTÃO É VERDADEIRO\n");
+                    } else {
+                        // Cenário em que a condição seja falsa
+                        compiledResult.write("SE " + firstVariable + " " + conditionalExpressionFormat(logicalOperator)
+                                + " " + secondVariable
+                                + " ENTÃO É FALSO\n");
                     }
                 }
                 // Armazenar valor da variável
                 if (isNotNull(ctx.getChild(2)) && isEquals(ctx.getChild(2), "=")) {
                     variableBuffer.put(ctx.getChild(1).getText(), ctx.getChild(3).getText());
                     compiledResult.write("VARIAVEL " + ctx.getChild(1).getText().toLowerCase() + " IGUAL "
-                            + ctx.getChild(3).getText() + " PONTO E VIRGULA");
+                            + ctx.getChild(3).getText() + " PONTO E VIRGULA\n");
                 }
             }
             compiledResult.flush();
