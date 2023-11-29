@@ -98,6 +98,23 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                     compiledResult.write("VARIAVEL " + ctx.getChild(1).getText().toLowerCase() + " IGUAL "
                             + ctx.getChild(3).getText() + " PONTO E VIRGULA\n");
                 }
+
+                if (isEquals(ctx.getChild(0), "FUNC")) {
+                    String varfunc = ctx.getChild(1).getChild(0).getText();
+                    variableBuffer.put(varfunc, varfunc);
+                    int varpar = (ctx.getChildCount() - 6) / 2;
+                    compiledResult.write("Parâmetros: ");
+            
+                    for (int i = 0; i < varpar; i++) {
+                        String parametro = ctx.getChild(3 + i * 2).getChild(0).getText();
+                        variableBuffer.put(parametro, "");  
+                        compiledResult.write(parametro);
+                        
+                        if (i < varpar - 1) {
+                            compiledResult.write(", ");
+                        }
+                    }
+                }
             }
             compiledResult.flush();
         } catch (IOException e) {
