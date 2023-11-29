@@ -1,8 +1,1 @@
 int A = 5;
-
-FUNC A (c , b)
-{   
-    INT d = 0;
-
-    d = a + b;
-};
