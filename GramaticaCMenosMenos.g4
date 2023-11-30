@@ -1,7 +1,7 @@
 grammar GramaticaCMenosMenos;
 
 
- raiz_programa: EOF | (declaracaoVariavel | declaracaoFunc  | calcular | blocoComando PONTO_E_VIRGULA)*; 
+ raiz_programa: (declaracaoVariavel | calcular | blocoComando | declaracaoPrint PONTO_E_VIRGULA) EOF;
 
 // Declarações  
 operadoresMath: MAIS | MENOS | DIVISAO | MULT;
@@ -11,7 +11,8 @@ relacional: LETRA operadoresRelacionais LETRA |
             relacional operadoresLogicos LETRA |
             LETRA operadoresRelacionais NUM |
             NUM operadoresRelacionais LETRA ;
-blocoComando: (declaracaoVariavel)* | (calcular)* (declaracaoFunc)* (condicional)*;
+blocoComando: (declaracaoVariavel)* | (calcular)* | (condicional)* | (declaracaoPrint)*;
+printcomando: CRAZE LETRA CRAZE; 
 
 calcular: LETRA IGUAL NUM operadoresMath NUM PONTO_E_VIRGULA |
           LETRA IGUAL LETRA operadoresMath LETRA PONTO_E_VIRGULA |
@@ -25,21 +26,18 @@ CHAVE_E
 CHAVE_D
 ;
 
+declaracaoPrint: PRINT PAR_E printcomando PAR_D;
 
 declaracaoVariavel: INT LETRA IGUAL NUM PONTO_E_VIRGULA 
 | STRING LETRA IGUAL LETRA PONTO_E_VIRGULA;
 
 
-declaracaoFunc: FUNC LETRA PAR_E (LETRA VIRGULA LETRA)* PAR_D IGUAL
-CHAVE_E
-    blocoComando
-CHAVE_D
-; 
 
 // Tipos
 INT:'INT' | 'int' ESPACO ;
 STRING: 'String' ESPACO ;
 FUNC: ESPACO 'FUNC' ESPACO ;
+PRINT: ESPACO 'Print' ESPACO;
 // Caracteres especiais
 PAR_E: '(' ; 
 PAR_D: ')' ;
@@ -47,6 +45,7 @@ CHAVE_E: '{' ;
 CHAVE_D: '}';
 PONTO_E_VIRGULA: ';' ;
 VIRGULA: ',' ;
+CRAZE: '`';
 // Operador de atribução
 IGUAL: ESPACO '=' ESPACO ;
 // Operadores Matemáticos
@@ -63,7 +62,7 @@ NOT: '!' | 'NOT' ;
 MAIOR_QUE: ESPACO '>' ESPACO ;
 MENOR_QUE: ESPACO '<' ESPACO ;
 // Tipos primitivos
-LETRA: [A-Z][a-z]* ;
+LETRA: [a-zA-Z][a-z]* ;
 NUM: [0-9][0-9]* ;
 ESPACO: [ \t\r\n]+ -> skip ;
 

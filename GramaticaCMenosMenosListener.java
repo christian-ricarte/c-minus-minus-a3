@@ -67,6 +67,16 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 */
 	void exitBlocoComando(GramaticaCMenosMenosParser.BlocoComandoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#printcomando}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintcomando(GramaticaCMenosMenosParser.PrintcomandoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#printcomando}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintcomando(GramaticaCMenosMenosParser.PrintcomandoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#calcular}.
 	 * @param ctx the parse tree
 	 */
@@ -97,6 +107,16 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 */
 	void exitCondicional(GramaticaCMenosMenosParser.CondicionalContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#declaracaoPrint}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracaoPrint(GramaticaCMenosMenosParser.DeclaracaoPrintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#declaracaoPrint}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracaoPrint(GramaticaCMenosMenosParser.DeclaracaoPrintContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#declaracaoVariavel}.
 	 * @param ctx the parse tree
 	 */
@@ -106,14 +126,4 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracaoVariavel(GramaticaCMenosMenosParser.DeclaracaoVariavelContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#declaracaoFunc}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaracaoFunc(GramaticaCMenosMenosParser.DeclaracaoFuncContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#declaracaoFunc}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaracaoFunc(GramaticaCMenosMenosParser.DeclaracaoFuncContext ctx);
 }

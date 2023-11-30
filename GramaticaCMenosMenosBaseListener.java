@@ -88,6 +88,18 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrintcomando(GramaticaCMenosMenosParser.PrintcomandoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintcomando(GramaticaCMenosMenosParser.PrintcomandoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCalcular(GramaticaCMenosMenosParser.CalcularContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -124,6 +136,18 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaracaoPrint(GramaticaCMenosMenosParser.DeclaracaoPrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracaoPrint(GramaticaCMenosMenosParser.DeclaracaoPrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracaoVariavel(GramaticaCMenosMenosParser.DeclaracaoVariavelContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -131,18 +155,6 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaracaoVariavel(GramaticaCMenosMenosParser.DeclaracaoVariavelContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclaracaoFunc(GramaticaCMenosMenosParser.DeclaracaoFuncContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaracaoFunc(GramaticaCMenosMenosParser.DeclaracaoFuncContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
