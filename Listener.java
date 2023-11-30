@@ -13,7 +13,7 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
 
     public Listener() {
         try {
-            compiledResult = new FileWriter(new File("Result.txt"));
+            compiledResult = new FileWriter(new File("Output.txt"));
         } catch (IOException e) {
             System.out.println("Erro de criação ao arquivo");
             e.printStackTrace();
@@ -35,36 +35,60 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                 // childs
                 ChildAuxiliary childAuxiliary = new ChildAuxiliary();
 
+                // Cálculo
+                if ((ctx.getChild(0).getText().contains("+") || ctx.getChild(0).getText().contains("-")
+                        || ctx.getChild(0).getText().contains("*")
+                        || ctx.getChild(0).getText().contains("/")) && ctx.getChild(0).getText().contains("=")
+                        && childAuxiliary.isNotNull(ctx.getChild(0))) {
+                    String firstReferenceChild = ctx.getChild(0).getChild(2).getText().split("\\s+")[0];
+                    String secondReferenceChild = ctx.getChild(0).getChild(2).getText().split("\\s+")[2];
+                    String operator = ctx.getChild(0).getChild(2).getText().split("\\s+")[1];
+                    compiledResult
+                            .write("O RESULTADO DE " + firstReferenceChild + stringFormat.mathExpressionFormat(operator)
+                                    + secondReferenceChild + " É " + logicalAux.mathExpressionEval(
+                                            childAuxiliary.isChar(firstReferenceChild)
+                                                    ? Integer.parseInt(variableBuffer.get(firstReferenceChild))
+                                                    : Integer.parseInt(firstReferenceChild),
+                                            childAuxiliary.isChar(secondReferenceChild)
+                                                    ? Integer.parseInt(variableBuffer.get(secondReferenceChild))
+                                                    : Integer.parseInt(secondReferenceChild),
+                                            operator)
+                                    + "\n");
+                }
 
                 // Impressão
-                if (childAuxiliary.isEquals(ctx.getChild(0), "Print")) {
+                if (childAuxiliary.isEquals(ctx.getChild(0), "print")) {
                     compiledResult.write("IMPRESSÃO DE: " + ctx.getChild(2).getText() + "\n");
                 }
 
                 // Estrutura condicional
                 if (childAuxiliary.isEquals(ctx.getChild(0), "if")) {
-                    String firstVariable = ctx.getChild(2).getChild(0).getText();
-                    String secondVariable = ctx.getChild(2).getChild(2).getText();
+                    String firstReferenceChild = ctx.getChild(2).getChild(0).getText();
+                    String secondReferenceChild = ctx.getChild(2).getChild(2).getText();
                     String logicalOperator = ctx.getChild(2).getChild(1).getText().trim();
                     // Condição para avaliar a lógica da expressão condicional
                     if (logicalAux.conditionalExpressionEval(
                             // Se for um caracter, no caso, uma variável, o valor associada a ela será
                             // buscado no buffer, do contrário, caso seja um valor efetivamente, o expressão
                             // seguirá
-                            childAuxiliary.isChar(firstVariable) ? Integer.parseInt(variableBuffer.get(firstVariable))
-                                    : Integer.parseInt(firstVariable),
-                            childAuxiliary.isChar(secondVariable) ? Integer.parseInt(variableBuffer.get(secondVariable))
-                                    : Integer.parseInt(secondVariable),
+                            childAuxiliary.isChar(firstReferenceChild)
+                                    ? Integer.parseInt(variableBuffer.get(firstReferenceChild))
+                                    : Integer.parseInt(firstReferenceChild),
+                            childAuxiliary.isChar(secondReferenceChild)
+                                    ? Integer.parseInt(variableBuffer.get(secondReferenceChild))
+                                    : Integer.parseInt(secondReferenceChild),
                             logicalOperator)) {
                         // Cenário em que a condição seja verdadeira
                         compiledResult.write(
-                                "SE " + firstVariable + " " + stringFormat.conditionalExpressionFormat(logicalOperator)
-                                        + " " + secondVariable + " ENTÃO É VERDADEIRO\n");
+                                "SE " + firstReferenceChild + " "
+                                        + stringFormat.conditionalExpressionFormat(logicalOperator)
+                                        + " " + secondReferenceChild + " ENTÃO É VERDADEIRO\n");
                     } else {
                         // Cenário em que a condição seja falsa
                         compiledResult.write(
-                                "SE " + firstVariable + " " + stringFormat.conditionalExpressionFormat(logicalOperator)
-                                        + " " + secondVariable
+                                "SE " + firstReferenceChild + " "
+                                        + stringFormat.conditionalExpressionFormat(logicalOperator)
+                                        + " " + secondReferenceChild
                                         + " ENTÃO É FALSO\n");
                     }
                 }
@@ -76,7 +100,9 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                 }
             }
             compiledResult.flush();
-        } catch (IOException e) {
+        } catch (
+
+        IOException e) {
             System.out.println("Erro de escrita ao arquivo");
             e.printStackTrace();
         }

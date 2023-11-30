@@ -40,18 +40,6 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperadoresLogicos(GramaticaCMenosMenosParser.OperadoresLogicosContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperadoresLogicos(GramaticaCMenosMenosParser.OperadoresLogicosContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterOperadoresRelacionais(GramaticaCMenosMenosParser.OperadoresRelacionaisContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,6 +47,42 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperadoresRelacionais(GramaticaCMenosMenosParser.OperadoresRelacionaisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressao(GramaticaCMenosMenosParser.ExpressaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressao(GramaticaCMenosMenosParser.ExpressaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTermo(GramaticaCMenosMenosParser.TermoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTermo(GramaticaCMenosMenosParser.TermoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFator(GramaticaCMenosMenosParser.FatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFator(GramaticaCMenosMenosParser.FatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

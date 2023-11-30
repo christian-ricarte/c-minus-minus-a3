@@ -27,16 +27,6 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 */
 	void exitOperadoresMath(GramaticaCMenosMenosParser.OperadoresMathContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#operadoresLogicos}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperadoresLogicos(GramaticaCMenosMenosParser.OperadoresLogicosContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#operadoresLogicos}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperadoresLogicos(GramaticaCMenosMenosParser.OperadoresLogicosContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#operadoresRelacionais}.
 	 * @param ctx the parse tree
 	 */
@@ -46,6 +36,36 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOperadoresRelacionais(GramaticaCMenosMenosParser.OperadoresRelacionaisContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#expressao}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressao(GramaticaCMenosMenosParser.ExpressaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#expressao}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressao(GramaticaCMenosMenosParser.ExpressaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#termo}.
+	 * @param ctx the parse tree
+	 */
+	void enterTermo(GramaticaCMenosMenosParser.TermoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#termo}.
+	 * @param ctx the parse tree
+	 */
+	void exitTermo(GramaticaCMenosMenosParser.TermoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#fator}.
+	 * @param ctx the parse tree
+	 */
+	void enterFator(GramaticaCMenosMenosParser.FatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#fator}.
+	 * @param ctx the parse tree
+	 */
+	void exitFator(GramaticaCMenosMenosParser.FatorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#relacional}.
 	 * @param ctx the parse tree

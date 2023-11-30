@@ -1,0 +1,7 @@
+int A = 3;
+if (A == 3) 
+{
+
+};
+A = A - 6;
+print (`teste`);
