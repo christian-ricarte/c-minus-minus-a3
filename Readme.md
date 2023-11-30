@@ -11,20 +11,27 @@
 
 <hr>
 
-### Progresso:
+### C--
+> Linguagem construída com base na sintaxe do C utilizando o ANTLR4 para sua confecção. Seu nome inspirado na linguagem C++, por puro entretenimento.
+
+### Gramática:
 - Declaracao de variáveis ✅
-- Declaracao de Função ✅
 - Declaracao de Estrutura Condicional ✅
-- Declaração de Expressões Lógicas ✅
-- Declaração de Expressões Matemáticas ✅
+- Cálculos 
+    - `+` ✅
+    - `-` ✅
+    - `*` ✅
+    - `/` ✅
 - Tipos de Dados:
     - Int ✅
-    - String ✅
-    - Func ✅
 - Tipos primitivos:
     - Espaco ✅
     - Letra ✅ 
     - Num ✅
+- Palavras Reservadas:
+    - `for` ✅
+    - `print` ✅
+    - `if` ✅
 - Caracteres Especiais:
     - `(` ✅
     - `)` ✅
@@ -36,7 +43,15 @@
     - `-` ✅
     - `*` ✅ 
     - `/` ✅
--  
+    - ` ✅
+    - `=` ✅
+    - `==` ✅
+    - `>` ✅
+    - `<` ✅
+
+### Requisitos:
+- Pacote do **ANTLR4** na sua versão **4.13.1** instalado e configurado no seu ambiente. O .jar está disponível em: `https://www.antlr.org/download.html`
+- Estar executando em uma máquina com um sistema operacional Windows, Macosx ou qualquer distribuição do Linux.
 
 ### Caso tenha o git instalado, basta digitar o seguinte trecho no terminal clonar o repositório e conferir o projeto localmente:
 `git clone https://github.com/christian-ricarte/c-minus-minus-a3.git`
