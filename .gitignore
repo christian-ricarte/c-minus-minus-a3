@@ -1,0 +1,15 @@
+GramaticaCMenosMenos.tokens
+GramaticaCMenosMenos.interp
+GramaticaCMenosMenosBaseListener.java
+GramaticaCMenosMenosLexer.interp
+GramaticaCMenosMenosLexer.tokens
+GramaticaCMenosMenosLexer.java
+GramaticaCMenosMenosListener.java
+GramaticaCMenosMenosParser.java
+GramaticaCMenosMenos.g4
+.antlr/GramaticaCMenosMenosParser.java
+.antlr/GramaticaCMenosMenosLexer.tokens
+.antlr/GramaticaCMenosMenosLexer.java
+.antlr/GramaticaCMenosMenosLexer.interp
+.antlr/GramaticaCMenosMenos.tokens
+.antlr/GramaticaCMenosMenos.interp
