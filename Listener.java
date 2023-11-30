@@ -34,6 +34,13 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                 // Instância da classe que fornece os métodos auxiliares para a manipulação dos
                 // childs
                 ChildAuxiliary childAuxiliary = new ChildAuxiliary();
+
+
+                // Impressão
+                if (childAuxiliary.isEquals(ctx.getChild(0), "Print")) {
+                    compiledResult.write("IMPRESSÃO DE: " + ctx.getChild(2).getText() + "\n");
+                }
+
                 // Estrutura condicional
                 if (childAuxiliary.isEquals(ctx.getChild(0), "if")) {
                     String firstVariable = ctx.getChild(2).getChild(0).getText();
@@ -66,23 +73,6 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                     variableBuffer.put(ctx.getChild(1).getText(), ctx.getChild(3).getText());
                     compiledResult.write("VARIAVEL " + ctx.getChild(1).getText().toLowerCase() + " IGUAL "
                             + ctx.getChild(3).getText() + " PONTO E VIRGULA\n");
-                }
-
-                if (childAuxiliary.isEquals(ctx.getChild(0), "FUNC")) {
-                    String varfunc = ctx.getChild(1).getChild(0).getText();
-                    variableBuffer.put(varfunc, varfunc);
-                    int varpar = (ctx.getChildCount() - 6) / 2;
-                    compiledResult.write("Parâmetros: ");
-
-                    for (int i = 0; i < varpar; i++) {
-                        String parametro = ctx.getChild(3 + i * 2).getChild(0).getText();
-                        variableBuffer.put(parametro, "");
-                        compiledResult.write(parametro);
-
-                        if (i < varpar - 1) {
-                            compiledResult.write(", ");
-                        }
-                    }
                 }
             }
             compiledResult.flush();

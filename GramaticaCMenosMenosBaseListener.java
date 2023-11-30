@@ -112,18 +112,6 @@ public class GramaticaCMenosMenosBaseListener implements GramaticaCMenosMenosLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCalculo(GramaticaCMenosMenosParser.CalculoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCalculo(GramaticaCMenosMenosParser.CalculoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCondicional(GramaticaCMenosMenosParser.CondicionalContext ctx) { }
 	/**
 	 * {@inheritDoc}

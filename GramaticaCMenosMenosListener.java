@@ -87,16 +87,6 @@ public interface GramaticaCMenosMenosListener extends ParseTreeListener {
 	 */
 	void exitCalcular(GramaticaCMenosMenosParser.CalcularContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#calculo}.
-	 * @param ctx the parse tree
-	 */
-	void enterCalculo(GramaticaCMenosMenosParser.CalculoContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GramaticaCMenosMenosParser#calculo}.
-	 * @param ctx the parse tree
-	 */
-	void exitCalculo(GramaticaCMenosMenosParser.CalculoContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GramaticaCMenosMenosParser#condicional}.
 	 * @param ctx the parse tree
 	 */

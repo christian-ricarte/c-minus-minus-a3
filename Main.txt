@@ -3,3 +3,6 @@ if (A > 4)
 {
 
 };
+A = 1 + 6;
+Print (`teste`);
+Print (`A`)
