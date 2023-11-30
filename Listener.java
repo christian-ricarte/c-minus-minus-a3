@@ -25,11 +25,14 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
         try {
             // Validar a quantidade de childs
             if (ctx.getChildCount() > 0) {
-                // Instância da classe que fornece os métodos auxiliares para a formatação de Strings
+                // Instância da classe que fornece os métodos auxiliares para a formatação de
+                // Strings
                 StringFormat stringFormat = new StringFormat();
-                // Instância da classe que fornece os métodos auxiliares para a lógica da gramática
+                // Instância da classe que fornece os métodos auxiliares para a lógica da
+                // gramática
                 LogicalAuxiliary logicalAux = new LogicalAuxiliary();
-                // Instância da classe que fornece os métodos auxiliares para a manipulação dos childs
+                // Instância da classe que fornece os métodos auxiliares para a manipulação dos
+                // childs
                 ChildAuxiliary childAuxiliary = new ChildAuxiliary();
                 // Estrutura condicional
                 if (childAuxiliary.isEquals(ctx.getChild(0), "if")) {
@@ -48,7 +51,8 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                             logicalOperator)) {
                         // Cenário em que a condição seja verdadeira
                         compiledResult.write(
-                                "SE " + firstVariable + " " + stringFormat.conditionalExpressionFormat(logicalOperator) + " " + secondVariable + " ENTÃO É VERDADEIRO\n");
+                                "SE " + firstVariable + " " + stringFormat.conditionalExpressionFormat(logicalOperator)
+                                        + " " + secondVariable + " ENTÃO É VERDADEIRO\n");
                     } else {
                         // Cenário em que a condição seja falsa
                         compiledResult.write(

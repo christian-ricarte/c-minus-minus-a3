@@ -1,7 +1,7 @@
 grammar GramaticaCMenosMenos;
 
 
- raiz_programa: (declaracaoVariavel | calcular | blocoComando | declaracaoPrint PONTO_E_VIRGULA) EOF;
+raiz_programa: EOF | (declaracaoVariavel  | calcular | blocoComando PONTO_E_VIRGULA)*; 
 
 // Declarações  
 operadoresMath: MAIS | MENOS | DIVISAO | MULT;
