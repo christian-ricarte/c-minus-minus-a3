@@ -35,6 +35,13 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                 // childs
                 ChildAuxiliary childAuxiliary = new ChildAuxiliary();
 
+                // Estrutura de Repetição
+                if (childAuxiliary.isEquals(ctx.getChild(0), "for")) {
+                    for (int i = 1; i <= Integer.parseInt(ctx.getChild(2).getText()); i++) {
+                        compiledResult.write("REPETICAO " + Integer.toString(i) + " PONTO E VIRGULA\n");
+                    }
+                }
+
                 // Cálculo
                 if ((ctx.getChild(0).getText().contains("+") || ctx.getChild(0).getText().contains("-")
                         || ctx.getChild(0).getText().contains("*")
@@ -53,12 +60,12 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                                                     ? Integer.parseInt(variableBuffer.get(secondReferenceChild))
                                                     : Integer.parseInt(secondReferenceChild),
                                             operator)
-                                    + "\n");
+                                    + " PONTO E VIRGULA\n");
                 }
 
                 // Impressão
                 if (childAuxiliary.isEquals(ctx.getChild(0), "print")) {
-                    compiledResult.write("IMPRESSÃO DE: " + ctx.getChild(2).getText() + "\n");
+                    compiledResult.write("IMPRESSÃO DE: " + ctx.getChild(2).getText() + " PONTO E VIRGULA\n");
                 }
 
                 // Estrutura condicional
@@ -82,14 +89,14 @@ public class Listener extends GramaticaCMenosMenosBaseListener {
                         compiledResult.write(
                                 "SE " + firstReferenceChild + " "
                                         + stringFormat.conditionalExpressionFormat(logicalOperator)
-                                        + " " + secondReferenceChild + " ENTÃO É VERDADEIRO\n");
+                                        + " " + secondReferenceChild + " ENTÃO É VERDADEIRO PONTO E VIRGULA\n");
                     } else {
                         // Cenário em que a condição seja falsa
                         compiledResult.write(
                                 "SE " + firstReferenceChild + " "
                                         + stringFormat.conditionalExpressionFormat(logicalOperator)
                                         + " " + secondReferenceChild
-                                        + " ENTÃO É FALSO\n");
+                                        + " ENTÃO É FALSO PONTO E VIRGULA\n");
                     }
                 }
                 // Armazenar valor da variável

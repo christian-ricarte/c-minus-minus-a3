@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class LogicalAuxiliary {
     // Método para avaliar os critérios da expressão condicional e entregar o
     // resultado dela
