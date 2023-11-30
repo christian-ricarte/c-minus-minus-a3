@@ -13,3 +13,4 @@ GramaticaCMenosMenos.g4
 .antlr/GramaticaCMenosMenosLexer.interp
 .antlr/GramaticaCMenosMenos.tokens
 .antlr/GramaticaCMenosMenos.interp
+.vscode/settings.json
