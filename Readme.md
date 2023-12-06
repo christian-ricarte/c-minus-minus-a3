@@ -53,5 +53,11 @@
 - Pacote do **ANTLR4** na sua versão **4.13.1** instalado e configurado no seu ambiente. O .jar está disponível em: `https://www.antlr.org/download.html`
 - Estar executando em uma máquina com um sistema operacional Windows, Macosx ou qualquer distribuição do Linux.
 
+### Instruções para Execução:
+- Antes de executar o projeto, garanta que a gramática foi compilada adequadamente pelo ANTLR4 através do comando: `antlr4 GramaticaCMenosMenos.g4`
+- A classe principal é a `Main`, portanto você deve realizar a inicialização a partir dela.
+- O arquivo de entrada é o `Input.txt`, basta escrever as instruções de acordo com a gramática que ela será compilada e o seu resultado poderá ser visto no arquivo `Output.txt`.
+- Caso queira alterar o `path` do arquivo de leitura, basta alterar o parâmetro do método `compile`, na classe `Main`.
+
 ### Caso tenha o git instalado, basta digitar o seguinte trecho no terminal clonar o repositório e conferir o projeto localmente:
 `git clone https://github.com/christian-ricarte/c-minus-minus-a3.git`
